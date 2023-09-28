@@ -39,7 +39,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
         holder.serviceImage.setImageResource(service.getImageRes());
         holder.itemView.setOnClickListener(v -> {
             if (onClickListener != null) {
-                onClickListener.onClick(position, service);
+                onClickListener.onClick(position, service, v);
             }
         });
     }
@@ -54,7 +54,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
     }
 
     public interface OnClickListener {
-        void onClick(int position, Service model);
+        void onClick(int position, Service model, View view);
     }
 
     public static class ServiceViewHolder extends RecyclerView.ViewHolder {

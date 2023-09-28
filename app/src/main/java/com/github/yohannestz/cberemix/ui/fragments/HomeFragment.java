@@ -1,5 +1,6 @@
 package com.github.yohannestz.cberemix.ui.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,11 +8,14 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.FragmentNavigator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +26,8 @@ import com.github.yohannestz.cberemix.ui.adapters.ServiceAdapter;
 import com.github.yohannestz.cberemix.ui.viewmodels.HomeViewModel;
 import com.github.yohannestz.cberemix.util.SpacesItemDecoration;
 import com.github.yohannestz.cberemix.util.Utils;
+import com.google.android.material.transition.MaterialContainerTransform;
+import com.google.android.material.transition.MaterialFadeThrough;
 
 public class HomeFragment extends Fragment {
 
@@ -39,8 +45,18 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setEnterTransition(new MaterialFadeThrough().setDuration(500));
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        if (activity != null && activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().show();
+        }
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navdrawer);
 
         RecyclerView recyclerView = binding.servicesList;
@@ -49,7 +65,15 @@ public class HomeFragment extends Fragment {
         recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
 
         ServiceAdapter serviceAdapter = new ServiceAdapter();
-        serviceAdapter.setOnClickListener((position, model) -> {
+        serviceAdapter.setOnClickListener((position, model, v) -> {
+            MaterialContainerTransform transform = new MaterialContainerTransform();
+            transform.setDuration(500);
+            transform.setScrimColor(Color.TRANSPARENT);
+
+            /*FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
+                    .addSharedElement(v, v.getTransitionName())
+                    .build();*/
+
             navController.navigate(R.id.action_nav_home_to_serviceDetailFragment);
         });
         recyclerView.setAdapter(serviceAdapter);

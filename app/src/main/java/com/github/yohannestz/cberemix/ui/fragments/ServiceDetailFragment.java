@@ -3,6 +3,7 @@ package com.github.yohannestz.cberemix.ui.fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -15,6 +16,8 @@ import com.github.yohannestz.cberemix.databinding.FragmentHomeBinding;
 import com.github.yohannestz.cberemix.databinding.FragmentServiceDetailBinding;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.elevation.SurfaceColors;
+import com.google.android.material.transition.MaterialContainerTransform;
+import com.google.android.material.transition.MaterialFadeThrough;
 
 public class ServiceDetailFragment extends Fragment {
 
@@ -28,10 +31,10 @@ public class ServiceDetailFragment extends Fragment {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null && activity.getSupportActionBar() != null) {
             activity.getSupportActionBar().hide();
-            //binding.serviceDetailToolBar.getMenu().clear();
-            //activity.setSupportActionBar(binding.serviceDetailToolBar);
+        /*    binding.serviceDetailToolBar.getMenu().clear();
+            activity.setSupportActionBar(binding.serviceDetailToolBar);
             activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            activity.getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+            activity.getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);*/
         }
 
         return binding.getRoot();
@@ -40,6 +43,12 @@ public class ServiceDetailFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setEnterTransition(new MaterialContainerTransform().setDuration(2500));
     }
 
     @Override

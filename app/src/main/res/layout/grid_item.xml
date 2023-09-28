@@ -24,6 +24,7 @@
 
         <ImageView
             android:id="@+id/service_image"
+            android:transitionName="serviceImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:srcCompat="@drawable/ic_folder"
