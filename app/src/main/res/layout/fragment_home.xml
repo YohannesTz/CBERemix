@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/fragment_home_scene"
+    android:id="@+id/parentLayout"
+    tools:context=".ui.fragments.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/cbe"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="24dp"
+            android:text="Your Balance"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="@color/md_theme_light_secondary"
+            app:layout_constraintBottom_toTopOf="@+id/bank_account_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_conversion_absoluteHeight="22dp"
+            tools:layout_conversion_absoluteWidth="145dp" />
+
+
+        <TextView
+            android:id="@+id/bank_account_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="5000.0 ETB"
+            android:textAppearance="?attr/textAppearanceDisplayMedium"
+            android:textColor="@color/md_theme_light_secondary"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_conversion_absoluteHeight="60dp"
+            tools:layout_conversion_absoluteWidth="230dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:src="@drawable/ic_eye_seeing"
+            app:layout_constraintBottom_toBottomOf="@+id/bank_account_text"
+            app:layout_constraintStart_toEndOf="@+id/bank_account_text"
+            app:layout_constraintTop_toTopOf="@+id/bank_account_text"
+            app:tint="@color/md_theme_light_secondary"
+            tools:layout_conversion_absoluteHeight="44dp"
+            tools:layout_conversion_absoluteWidth="44dp" />
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="24dp"
+            android:text="Send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button2"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:text="Recive"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topLayout">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Our Services"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="@color/md_theme_light_secondary"
+            app:layout_constraintBottom_toTopOf="@+id/services_list"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/services_list"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/services_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:listitem="@layout/grid_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

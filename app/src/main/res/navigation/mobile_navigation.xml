@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.github.yohannestz.cberemix.ui.fragments.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_serviceDetailFragment"
+            app:destination="@id/serviceDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_accounts"
+        android:name="com.github.yohannestz.cberemix.ui.fragments.AccountsFragment"
+        android:label="@string/menu_accounts"
+        tools:layout="@layout/fragment_accounts" />
+    <fragment
+        android:id="@+id/nav_recent"
+        android:name="com.github.yohannestz.cberemix.ui.fragments.RecentsFragment"
+        android:label="@string/menu_recent"
+        tools:layout="@layout/fragment_recents" />
+    <fragment
+        android:id="@+id/serviceDetailFragment"
+        android:name="com.github.yohannestz.cberemix.ui.fragments.ServiceDetailFragment"
+        android:label="fragment_service_detail"
+        tools:layout="@layout/fragment_service_detail" />
+</navigation>

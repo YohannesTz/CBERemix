@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><!-- XML implementation of Card Layout -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/service_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginTop="0dp"
+    app:cardCornerRadius="16dp"
+    style="?attr/materialCardViewFilledStyle"
+    android:background="?attr/colorSecondaryContainer"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:id="@+id/lyt_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/service_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/ic_folder"
+            app:tint="@color/md_theme_light_primary" />
+
+        <TextView
+            android:id="@+id/service_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/md_theme_light_secondary"
+            android:text="Service Name"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            app:autoSizeTextType="uniform" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
