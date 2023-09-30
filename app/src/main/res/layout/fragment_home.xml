@@ -48,12 +48,12 @@
             tools:layout_conversion_absoluteWidth="145dp" />
 
 
-        <TextView
+        <com.github.yohannestz.cberemix.util.ToggleTextView
             android:id="@+id/bank_account_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="5000.0 ETB"
+            tools:text="5000.0 ETB"
             android:textAppearance="?attr/textAppearanceDisplayMedium"
             android:textColor="@color/md_theme_light_secondary"
             app:layout_constraintBottom_toTopOf="@+id/button"
@@ -62,7 +62,7 @@
             tools:layout_conversion_absoluteWidth="230dp" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/moneyToggleBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

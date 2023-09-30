@@ -59,6 +59,12 @@ public class HomeFragment extends Fragment {
         }
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navdrawer);
 
+        binding.bankAccountText.setTextOn("5000.0 ETB");
+        binding.bankAccountText.setTextOff("************");
+        binding.moneyToggleBtn.setOnClickListener(v -> {
+            binding.bankAccountText.toggle();
+        });
+
         RecyclerView recyclerView = binding.servicesList;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         int spacingInPixels = Utils.dpToPx(0);
@@ -69,10 +75,6 @@ public class HomeFragment extends Fragment {
             MaterialContainerTransform transform = new MaterialContainerTransform();
             transform.setDuration(500);
             transform.setScrimColor(Color.TRANSPARENT);
-
-            /*FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
-                    .addSharedElement(v, v.getTransitionName())
-                    .build();*/
 
             navController.navigate(R.id.action_nav_home_to_serviceDetailFragment);
         });
