@@ -10,9 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.yohannestz.cberemix.R;
 import com.github.yohannestz.cberemix.databinding.FragmentServiceDetailBinding;
 import com.github.yohannestz.cberemix.ui.adapters.ServiceAdapter;
 import com.github.yohannestz.cberemix.ui.viewmodels.ServiceDetailViewModel;
@@ -23,6 +26,7 @@ public class ServiceDetailFragment extends Fragment {
 
     private FragmentServiceDetailBinding binding;
     private ServiceDetailViewModel serviceDetailViewModel;
+    private NavController bottomNavController;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -41,7 +45,6 @@ public class ServiceDetailFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
         RecyclerView recyclerView = binding.serviceDetailList;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -51,6 +54,13 @@ public class ServiceDetailFragment extends Fragment {
         });
         recyclerView.setAdapter(serviceAdapter);
         serviceDetailViewModel.getServices().observe(getViewLifecycleOwner(),serviceAdapter::setData);
+
+        if (getActivity() != null) {
+            bottomNavController = Navigation.findNavController(getActivity(),  R.id.nav_host_fragment_content_navdrawer);
+            binding.backButton.setOnClickListener(view -> {
+                bottomNavController.popBackStack();
+            });
+        }
     }
 
     @Override

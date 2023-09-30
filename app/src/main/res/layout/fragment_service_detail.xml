@@ -1,76 +1,77 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layoutDescription="@xml/fragment_service_detail_scene"
+    app:showPaths="false">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/serviceDetailAppBar"
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_arrow_back"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toTopOf="@+id/serviceDetailList"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/serviceImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@id/backButton"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintStart_toEndOf="@id/backButton"
+        app:layout_constraintTop_toTopOf="@id/backButton"
+        app:srcCompat="@drawable/ic_folder"
+        app:tint="@color/md_theme_light_primary" />
+
+
+    <TextView
+        android:id="@+id/serviceDetailTv"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Service Detail"
+        android:textAppearance="?attr/textAppearanceTitleLarge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/serviceImageView"
+        tools:layout_editor_absoluteY="102dp" />
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:contentScrim="?attr/colorSecondaryContainer"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <LinearLayout
-                android:id="@+id/lyt_parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:orientation="vertical"
-                app:layout_collapseMode="parallax"
-                android:padding="16dp">
-
-                <ImageView
-                    android:id="@+id/service_image"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:transitionName="serviceImage"
-                    android:layout_marginVertical="20dp"
-                    app:srcCompat="@drawable/ic_folder"
-                    app:tint="@color/md_theme_light_primary" />
-
-            </LinearLayout>
-
-            <!-- Toolbar -->
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/serviceDetailToolBar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:tint="@android:color/black"
-                app:layout_collapseMode="pin"
-                app:title="Service Name"
-                android:elevation="4dp" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <!-- NestedScrollView to hold the RecyclerView -->
-    <androidx.core.widget.NestedScrollView
+    <View
+        android:id="@+id/shadowView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="16dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="10dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/shape_shadow"
+        app:layout_constraintTop_toBottomOf="@id/serviceDetailTv" />
 
-        <!-- RecyclerView -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/serviceDetailList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/serviceDetailList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serviceImageView"
+        tools:listitem="@layout/grid_item" />
 
-        <!--<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/large_text" />-->
+    <Space
+        android:id="@+id/space"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/serviceImageView"
+        app:layout_constraintStart_toEndOf="@+id/serviceImageView"
+        app:layout_constraintStart_toStartOf="@+id/serviceImageView"
+        app:layout_constraintTop_toBottomOf="@id/serviceImageView" />
 
-    </androidx.core.widget.NestedScrollView>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

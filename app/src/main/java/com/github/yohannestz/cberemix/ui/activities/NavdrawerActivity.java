@@ -63,6 +63,12 @@ public class NavdrawerActivity extends AppCompatActivity {
                 Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(false);
                 getSupportActionBar()
                         .setDisplayHomeAsUpEnabled(false);
+            } else{
+
+                Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
+                getSupportActionBar().show();
+                getSupportActionBar()
+                        .setDisplayHomeAsUpEnabled(true);
             }
         });
         NavigationUI.setupWithNavController(bottomNavigationView, bottomNavController);

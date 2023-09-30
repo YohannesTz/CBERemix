@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.github.yohannestz.cberemix'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.github.yohannestz.cberemix"

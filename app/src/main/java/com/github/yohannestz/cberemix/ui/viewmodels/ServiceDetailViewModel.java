@@ -29,6 +29,9 @@ public class ServiceDetailViewModel extends ViewModel {
         services.add(new Service("Detail Service 3", R.drawable.ic_folder));
         services.add(new Service("Detail Service 4", R.drawable.ic_folder));
         services.add(new Service("Detail Service 5", R.drawable.ic_folder));
+        services.add(new Service("Detail Service 6", R.drawable.ic_folder));
+        services.add(new Service("Detail Service 7", R.drawable.ic_folder));
+        services.add(new Service("Detail Service 8", R.drawable.ic_folder));
         serviceDetailList.setValue(services);
     }
 

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Transition
+        app:constraintSetStart="@id/start"
+        app:constraintSetEnd="@id/end"
+        app:duration="1000">
+        <OnSwipe
+            app:touchAnchorId="@+id/serviceDetailList"
+            app:touchAnchorSide="top"
+            app:dragDirection="dragUp" />
+        <KeyFrameSet >
+            <KeyAttribute
+                app:motionTarget="@+id/backButton"
+                app:framePosition="100"
+                android:alpha="1" />
+            <KeyAttribute
+                app:motionTarget="@+id/backButton"
+                app:framePosition="0"
+                android:alpha="0.0" />
+            <KeyAttribute
+                app:motionTarget="@+id/shadowView"
+                app:framePosition="0"
+                android:alpha="0.0" />
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+
+        <Constraint
+            android:layout_width="160dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="h,1:1"
+            android:id="@+id/serviceImageView"
+            app:layout_constraintTop_toTopOf="@+id/backButton"
+            app:layout_constraintBottom_toBottomOf="@+id/backButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp" />
+        <Constraint
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/space"
+            android:id="@+id/serviceDetailTv"
+            app:layout_constraintEnd_toEndOf="@+id/serviceImageView"
+            app:layout_constraintStart_toStartOf="@+id/serviceImageView"
+            app:layout_constraintTop_toBottomOf="@+id/serviceImageView"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp" />
+        <Constraint
+            android:layout_height="10dp"
+            android:layout_width="match_parent"
+            android:id="@+id/shadowView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/serviceDetailTv"
+            app:layout_constraintBottom_toTopOf="@+id/serviceDetailList" />
+        <Constraint
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/serviceImageView"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="24dp"
+            android:id="@+id/serviceDetailList" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+
+        <Constraint android:id="@id/serviceImageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/backButton">
+        </Constraint>
+        <Constraint
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/serviceDetailList"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/backButton" />
+        <Constraint
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/serviceImageView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/space"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toTopOf="@+id/serviceImageView"
+            android:layout_marginTop="8dp"
+            android:id="@+id/serviceDetailTv" />
+
+    </ConstraintSet>
+</MotionScene>
