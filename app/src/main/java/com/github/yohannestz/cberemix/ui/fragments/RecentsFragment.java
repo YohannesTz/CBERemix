@@ -26,11 +26,6 @@ public class RecentsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        binding.toggleTextView.setTextOn("Your Secret Text.");
-        binding.toggleTextView.setTextOff("**************");
-        binding.toggleBtn.setOnClickListener(v -> {
-            binding.toggleTextView.toggle();
-        });
     }
 
     @Override

@@ -50,6 +50,7 @@ dependencies {
     implementation("com.patrykandpatrick.vico:compose-m3:1.12.0")
     implementation("com.patrykandpatrick.vico:core:1.12.0")
     implementation("com.patrykandpatrick.vico:views:1.12.0")
+    implementation("ir.mahozad.android:pie-chart:0.7.0")
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

@@ -30,7 +30,10 @@ public class AccountsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        ChartEntryModel chartEntryModel = entryModelOf(entriesOf(4f, 12f, 8f, 16f), entriesOf(12f, 16f, 4f, 12f));
+        ChartEntryModel chartEntryModel = entryModelOf(
+                entriesOf(4f, 12f, 8f, 16f),
+                entriesOf(12f, 16f, 4f, 12f
+        ));
         binding.chartView.setModel(chartEntryModel);
     }
 

@@ -68,7 +68,7 @@ public class NavdrawerActivity extends AppCompatActivity {
                 Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
                 getSupportActionBar().show();
                 getSupportActionBar()
-                        .setDisplayHomeAsUpEnabled(true);
+                        .setDisplayHomeAsUpEnabled(false);
             }
         });
         NavigationUI.setupWithNavController(bottomNavigationView, bottomNavController);
@@ -76,8 +76,6 @@ public class NavdrawerActivity extends AppCompatActivity {
         getWindow().setNavigationBarColor(SurfaceColors.SURFACE_2.getColor(this));
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
