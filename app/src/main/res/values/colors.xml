@@ -61,4 +61,7 @@
     <color name="md_theme_dark_surfaceTint">#F3AEFF</color>
     <color name="md_theme_dark_outlineVariant">#4C444C</color>
     <color name="md_theme_dark_scrim">#000000</color>
+
+    <color name="chart_7_color_1">#FF0000</color>
+    <color name="chart_7_color_2">#008000</color>
 </resources>

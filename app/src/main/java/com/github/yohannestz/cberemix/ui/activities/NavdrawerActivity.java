@@ -64,7 +64,6 @@ public class NavdrawerActivity extends AppCompatActivity {
                 getSupportActionBar()
                         .setDisplayHomeAsUpEnabled(false);
             } else{
-
                 Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
                 getSupportActionBar().show();
                 getSupportActionBar()

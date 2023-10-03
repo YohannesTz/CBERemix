@@ -2,6 +2,7 @@ package com.github.yohannestz.cberemix.ui.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,8 +60,10 @@ public class HomeFragment extends Fragment {
         }
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navdrawer);
 
-        binding.bankAccountText.setTextOn("5000.0 ETB");
+        binding.bankAccountText.setTextOn(homeViewModel.getText().getValue());
+        Log.e("showText: ", homeViewModel.getShowText().getValue().toString());
         binding.bankAccountText.setTextOff("************");
+        binding.bankAccountText.setIsOn(Boolean.TRUE.equals(homeViewModel.getShowText().getValue()));
         binding.moneyToggleBtn.setOnClickListener(v -> {
             binding.bankAccountText.toggle();
         });

@@ -47,6 +47,11 @@ public class ToggleTextView extends AppCompatTextView {
         updateText();
     }
 
+    public void setIsOn(boolean value) {
+        isOn = value;
+        updateText();
+    }
+
     private void updateText() {
         setText(isOn ? (textOn != null ? textOn : "") : (textOff != null ? textOff : ""));
     }

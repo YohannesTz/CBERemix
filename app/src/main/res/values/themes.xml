@@ -10,6 +10,24 @@
         <item name="snackbarStyle">@style/snackBarStyle</item>
     </style>
 
+    <style name="Chart7LineStyle">
+        <item name="gradientTopColor">@android:color/transparent</item>
+        <item name="gradientBottomColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Chart7Line1Style" parent="@style/Chart7LineStyle">
+        <item name="color">@color/chart_7_color_1</item>
+    </style>
+
+    <style name="Chart7Line2Style" parent="@style/Chart7LineStyle">
+        <item name="color">@color/chart_7_color_2</item>
+    </style>
+
+    <style name="Chart7LineChartStyle">
+        <item name="line1Spec">@style/Chart7Line1Style</item>
+        <item name="line2Spec">@style/Chart7Line2Style</item>
+    </style>
+
     <style name="Widget.App.AppBarLayout" parent="Widget.Material3.AppBarLayout">
         <item name="android:outlineAmbientShadowColor" tools:ignore="NewApi">@android:color/black</item>
         <item name="android:outlineSpotShadowColor" tools:ignore="NewApi">@android:color/black</item>

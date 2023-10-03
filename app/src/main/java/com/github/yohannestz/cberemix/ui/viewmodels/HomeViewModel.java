@@ -13,11 +13,14 @@ import java.util.List;
 public class HomeViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
+    private final MutableLiveData<Boolean> showText;
     private MutableLiveData<List<Service>> servicesLiveData;
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        showText = new MutableLiveData<>();
+        mText.setValue("5000.0 ETB");
+        showText.setValue(false);
     }
 
     public LiveData<List<Service>> getServices() {
@@ -40,5 +43,9 @@ public class HomeViewModel extends ViewModel {
 
     public LiveData<String> getText() {
         return mText;
+    }
+
+    public LiveData<Boolean> getShowText() {
+        return showText;
     }
 }
