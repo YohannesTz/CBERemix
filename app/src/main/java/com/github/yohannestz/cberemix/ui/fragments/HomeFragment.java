@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -21,12 +22,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.yohannestz.cberemix.R;
-import com.github.yohannestz.cberemix.data.Service;
 import com.github.yohannestz.cberemix.databinding.FragmentHomeBinding;
 import com.github.yohannestz.cberemix.ui.adapters.ServiceAdapter;
 import com.github.yohannestz.cberemix.ui.viewmodels.HomeViewModel;
 import com.github.yohannestz.cberemix.util.SpacesItemDecoration;
 import com.github.yohannestz.cberemix.util.Utils;
+import com.google.android.material.elevation.SurfaceColors;
 import com.google.android.material.transition.MaterialContainerTransform;
 import com.google.android.material.transition.MaterialFadeThrough;
 
@@ -83,6 +84,22 @@ public class HomeFragment extends Fragment {
         });
         recyclerView.setAdapter(serviceAdapter);
         homeViewModel.getServices().observe(getViewLifecycleOwner(), serviceAdapter::setData);
+
+        binding.sendMoney.setOnClickListener(v -> {
+            MaterialContainerTransform transform = new MaterialContainerTransform();
+            transform.setDuration(500);
+            transform.setScrimColor(Color.TRANSPARENT);
+
+            navController.navigate(R.id.action_nav_home_to_sendMoneyFragment);
+        });
+
+        binding.recieveMoney.setOnClickListener(v -> {
+            ReceiveMoneyDialogFragment receiveMoneyDialogFragment = new ReceiveMoneyDialogFragment();
+            if (activity != null) {
+                receiveMoneyDialogFragment.show(activity.getSupportFragmentManager(), receiveMoneyDialogFragment.TAG);
+                //activity.getWindow().setNavigationBarColor(SurfaceColors.SURFACE_4.getColor(activity.getApplicationContext()));
+            }
+        });
     }
 
     @Override
