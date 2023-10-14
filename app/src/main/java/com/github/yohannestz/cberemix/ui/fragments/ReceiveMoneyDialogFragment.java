@@ -2,8 +2,9 @@ package com.github.yohannestz.cberemix.ui.fragments;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,40 +12,22 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 
-import com.github.alexzhirkevich.customqrgenerator.QrData;
-import com.github.alexzhirkevich.customqrgenerator.style.BitmapScale;
-import com.github.alexzhirkevich.customqrgenerator.vector.QrCodeDrawableKt;
-import com.github.alexzhirkevich.customqrgenerator.vector.QrVectorOptions;
-import com.github.alexzhirkevich.customqrgenerator.vector.style.QrVectorBackground;
-import com.github.alexzhirkevich.customqrgenerator.vector.style.QrVectorBallShape;
-import com.github.alexzhirkevich.customqrgenerator.vector.style.QrVectorColor;
-import com.github.alexzhirkevich.customqrgenerator.vector.style.QrVectorColors;
-import com.github.alexzhirkevich.customqrgenerator.vector.style.QrVectorFrameShape;
-import com.github.alexzhirkevich.customqrgenerator.vector.style.QrVectorLogo;
-import com.github.alexzhirkevich.customqrgenerator.vector.style.QrVectorLogoPadding;
-import com.github.alexzhirkevich.customqrgenerator.vector.style.QrVectorLogoShape;
-import com.github.alexzhirkevich.customqrgenerator.vector.style.QrVectorPixelShape;
-import com.github.alexzhirkevich.customqrgenerator.vector.style.QrVectorShapes;
-import com.github.yohannestz.cberemix.R;
 import com.github.yohannestz.cberemix.databinding.RecieveDialogLayoutBinding;
 import com.github.yohannestz.cberemix.util.QRCodeGenerator;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.elevation.SurfaceColors;
-import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
-
-import kotlin.Pair;
 
 public class ReceiveMoneyDialogFragment extends BottomSheetDialogFragment {
 
     private RecieveDialogLayoutBinding binding;
+    private String qrDataText = "https://cbe.com/receive?account=100003450&amount=0";
     final String TAG = "com.github.yohannestz.cberemix.ui.fragments.ReceiveMoneyDialogFragment";
 
     @Override
@@ -56,9 +39,16 @@ public class ReceiveMoneyDialogFragment extends BottomSheetDialogFragment {
     @Override
     public void onStart() {
         super.onStart();
-        Activity activity = getActivity();
-        if (activity != null) {
-            activity.getWindow().setNavigationBarColor(SurfaceColors.SURFACE_2.getColor(activity.getApplicationContext()));
+        // Enable scrim
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            Window window = dialog.getWindow();
+            if (window != null) {
+                //window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                window.setNavigationBarColor(SurfaceColors.SURFACE_1.getColor(requireContext()));
+                window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            }
         }
 
         binding.bankAccountNumber.setTextOff("************");
@@ -66,6 +56,9 @@ public class ReceiveMoneyDialogFragment extends BottomSheetDialogFragment {
         binding.bankAccountNumber.setOnClickListener(v -> {
             binding.bankAccountNumber.toggle();
         });
+        binding.amountEditText.setText("10");
+        binding.qrImageView.setImageDrawable(generateQr(qrDataText));
+
         binding.amountEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -77,12 +70,23 @@ public class ReceiveMoneyDialogFragment extends BottomSheetDialogFragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                QRCodeGenerator qrCodeGenerator = new QRCodeGenerator(getContext());
                 String payload = Objects.requireNonNull(binding.amountEditText.getText()).toString();
-                Drawable qrDrawable = qrCodeGenerator.drawableFromText(payload);
-                binding.imageView3.setImageDrawable(qrDrawable);
+                binding.qrImageView.setImageDrawable(generateQr(payload));
             }
         });
 
+        binding.shareLink.setOnClickListener(v -> {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "CBE Payment Request");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "CBE Payment Request \n" + qrDataText);
+            startActivity(Intent.createChooser(shareIntent, "Share via"));
+        });
+    }
+
+    private Drawable generateQr(String payload) {
+        QRCodeGenerator qrCodeGenerator = new QRCodeGenerator(getContext());
+        qrDataText = "https://cbe.com/receive?account=100003450&amount=" + payload;
+        return qrCodeGenerator.drawableFromText(qrDataText);
     }
 }

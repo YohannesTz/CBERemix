@@ -3,6 +3,9 @@ package com.github.yohannestz.cberemix.ui.activities;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,9 +38,6 @@ public class NavdrawerActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarNavdrawer.toolbar);
-        binding.appBarNavdrawer.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
-
 
         DrawerLayout drawer = binding.drawerLayout;
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -58,19 +58,28 @@ public class NavdrawerActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = binding.appBarNavdrawer.bottomNav;
         NavController bottomNavController = Navigation.findNavController(this,  R.id.nav_host_fragment_content_navdrawer);
         bottomNavController.addOnDestinationChangedListener((navController, navDestination, bundle) -> {
+            Log.e("getId", getResources().getResourceEntryName(navDestination.getId()));
             if (navDestination.getId() == R.id.serviceDetailFragment) {
-                Log.e("getId", getResources().getResourceEntryName(navDestination.getId()));
                 Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(false);
                 getSupportActionBar()
                         .setDisplayHomeAsUpEnabled(false);
+            } else if (navDestination.getId() == R.id.scanQrFragment) {
+                Objects.requireNonNull(getSupportActionBar()).hide();
+                bottomNavigationView.setVisibility(View.GONE);
             } else{
                 Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
                 getSupportActionBar().show();
+                bottomNavigationView.setVisibility(View.VISIBLE);
                 getSupportActionBar()
                         .setDisplayHomeAsUpEnabled(false);
             }
         });
+
         NavigationUI.setupWithNavController(bottomNavigationView, bottomNavController);
+
+        binding.appBarNavdrawer.fab.setOnClickListener(view -> {
+            bottomNavController.navigate(R.id.action_nav_home_to_scanQrFragment);
+        });
 
         getWindow().setNavigationBarColor(SurfaceColors.SURFACE_2.getColor(this));
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));

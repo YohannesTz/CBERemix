@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_nav_home_to_receiveMoneyFragment"
             app:destination="@id/receiveMoneyFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_scanQrFragment"
+            app:destination="@id/scanQrFragment" />
     </fragment>
     <fragment
         android:id="@+id/nav_accounts"
@@ -40,4 +43,9 @@
         android:name="com.github.yohannestz.cberemix.ui.fragments.ReceiveMoneyFragment"
         android:label="fragment_receive_money"
         tools:layout="@layout/fragment_receive_money" />
+    <fragment
+        android:id="@+id/scanQrFragment"
+        android:name="com.github.yohannestz.cberemix.ui.fragments.ScanQrFragment"
+        android:label="fragment_scan_qr"
+        tools:layout="@layout/fragment_scan_qr" />
 </navigation>

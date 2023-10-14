@@ -27,9 +27,10 @@ import com.github.yohannestz.cberemix.ui.adapters.ServiceAdapter;
 import com.github.yohannestz.cberemix.ui.viewmodels.HomeViewModel;
 import com.github.yohannestz.cberemix.util.SpacesItemDecoration;
 import com.github.yohannestz.cberemix.util.Utils;
-import com.google.android.material.elevation.SurfaceColors;
 import com.google.android.material.transition.MaterialContainerTransform;
 import com.google.android.material.transition.MaterialFadeThrough;
+
+import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -62,7 +63,7 @@ public class HomeFragment extends Fragment {
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navdrawer);
 
         binding.bankAccountText.setTextOn(homeViewModel.getText().getValue());
-        Log.e("showText: ", homeViewModel.getShowText().getValue().toString());
+        Log.e("showText: ", Objects.requireNonNull(homeViewModel.getShowText().getValue()).toString());
         binding.bankAccountText.setTextOff("************");
         binding.bankAccountText.setIsOn(Boolean.TRUE.equals(homeViewModel.getShowText().getValue()));
         binding.moneyToggleBtn.setOnClickListener(v -> {
