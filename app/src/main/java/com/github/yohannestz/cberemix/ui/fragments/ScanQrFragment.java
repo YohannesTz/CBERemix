@@ -22,15 +22,20 @@ import androidx.camera.view.LifecycleCameraController;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.Preview;
 import androidx.camera.view.PreviewView;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import com.github.yohannestz.cberemix.R;
 import com.github.yohannestz.cberemix.databinding.FragmentScanQrBinding;
 import com.github.yohannestz.cberemix.util.QrcodeAnalyzer;
+import com.google.android.material.navigation.NavigationView;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
 
@@ -145,6 +150,14 @@ public class ScanQrFragment extends Fragment {
         }, ContextCompat.getMainExecutor(requireContext()));
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navdrawer);
+        binding.btnBack.setOnClickListener(V -> {
+            navController.popBackStack();
+        });
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,

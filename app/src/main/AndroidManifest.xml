@@ -22,7 +22,6 @@
         <activity
             android:name=".ui.activities.NavdrawerActivity"
             android:exported="true"
-            android:label="@string/title_activity_navdrawer"
             android:theme="@style/Theme.CBERemix.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
